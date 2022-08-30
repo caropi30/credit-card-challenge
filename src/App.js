@@ -1,5 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+//import { Main } from "Main/index.jsx";
 
 function App() {
   return (
