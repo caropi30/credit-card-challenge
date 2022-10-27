@@ -1,16 +1,23 @@
 import React from "react";
-//import { useState } from "react";
+import { useState } from "react";
 import "./index.scss";
-//import { BackSide } from "../BackSide/index";
-import { FrontSide } from "../FrontSide/index";
+import { CreditCard } from "../CreditCard/index";
 import { CardForm } from "../CardForm/index";
 
 const Main = () => {
-  //const [data, SetData] = useState([]);
+  const [data, setData] = useState({
+    cardHolder: "",
+    cardNumber: "",
+    month: "",
+    year: "",
+    cvc: "",
+  });
   return (
     <>
-      <CardForm />
-      <FrontSide />
+      <main>
+        <CreditCard data={data} />
+        <CardForm data={data} setData={setData} />
+      </main>
     </>
   );
 };

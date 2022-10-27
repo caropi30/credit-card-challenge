@@ -1,20 +1,15 @@
 import React from "react";
-import { useState } from "react";
+//import { useState } from "react";
 import "./index.scss";
 
-const CardForm = () => {
-  const [cardHolder, setCardHolder] = useState("");
-  const [cardNumber, setCardNumber] = useState();
-  const [month, setMonth] = useState();
-  const [year, setYear] = useState();
-  const [cvc, setCvc] = useState();
-
-  console.log(cardHolder);
-  //console.log(cardNumber);
-
-  const takingValues = (e) => {
-    setCardHolder(e.target.value);
+const CardForm = ({ data, setData }) => {
+  const handleInputChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
   };
+
   return (
     <>
       <form method="post">
@@ -23,9 +18,9 @@ const CardForm = () => {
           <input
             placeholder="e.g Antonio Barrera"
             type="text"
-            name="cardholder"
-            value={cardHolder}
-            onChange={takingValues}
+            name="cardHolder"
+            value={data.cardHolder}
+            onChange={handleInputChange}
           />
         </label>
         <label for="card-number">
@@ -33,9 +28,9 @@ const CardForm = () => {
           <input
             placeholder="e.g 1234 5678 3456 5890"
             type="number"
-            name="card-number"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
+            name="cardNumber"
+            onChange={handleInputChange}
+            value={data.cardNumber}
           />
         </label>
         <div>
@@ -43,19 +38,21 @@ const CardForm = () => {
             EXP. DATE (MM/YY)
             <label for="month">
               <input
+                type="number"
                 placeholder="MM"
                 name="month"
-                value={month}
-                onChange={(e) => setMonth(e.target.value)}
+                value={data.month}
+                onChange={handleInputChange}
               />
             </label>
             <label for="year">
               <input
+                type="number"
                 placeholder="YY"
                 for="year"
-                type="number"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+                name="year"
+                value={data.year}
+                onChange={handleInputChange}
               />
             </label>
           </div>
@@ -65,15 +62,12 @@ const CardForm = () => {
               placeholder="e.g 123"
               type="number"
               name="cvc"
-              value={cvc}
-              onChange={(e) => setCvc(e.target.value)}
+              value={data.cvc}
+              onChange={handleInputChange}
             />
           </label>
         </div>
-
-        <button type="button" onSubmit={() => {}}>
-          Confirm
-        </button>
+        <button type="button">Confirm</button>
       </form>
     </>
   );
